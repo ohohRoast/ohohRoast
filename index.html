@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ohohRoast – Christmas video roasts</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#120b0e">
+<meta property="og:title" content="Someone got you a Christmas roast">
+<meta property="og:description" content="A personalized, merciless Christmas video. Make yours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120b0e;--card:#1e1318;--line:#3a2630;--text:#f6ede8;--mute:#b7a3a8;--red:#e8324a;--gold:#f3c56b;--ok:#4ad295}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -200px,#3a1420 0,var(--bg) 60%);color:var(--text);font:16px/1.5 'Fredoka',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px 80px}
+.head{text-align:center;margin-bottom:8px}
+.logo-img{display:block;width:min(300px,80%);height:auto;margin:0 auto 6px}
+h1{font-size:26px;margin:8px 0 4px;font-weight:600}
+h2{font-size:20px;margin:0 0 12px;font-weight:600}
+p.sub{color:var(--mute);margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+label{display:block;font-size:13px;color:var(--mute);margin:14px 0 6px}
+input,select,textarea{width:100%;background:#120b0e;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit}
+input[type=checkbox],input[type=radio]{width:auto;accent-color:var(--red)}
+select{appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;padding-right:46px;
+  background:#120b0e url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1.5l6 6 6-6' stroke='%23b7a3a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") no-repeat right 18px center;background-size:14px 9px}
+textarea{height:96px;resize:none;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+textarea::-webkit-scrollbar{display:none}
+.count{font-size:12px;color:var(--mute);text-align:right;margin-top:4px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-color:transparent}
+button{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:12px;padding:14px 18px;background:var(--red);color:#fff;width:100%;margin-top:16px}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+button.small{padding:10px 14px;margin-top:12px;font-weight:600}
+button:disabled{opacity:.5;cursor:default}
+a{color:var(--gold)}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+.chars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.char{border:2px solid var(--line);border-radius:14px;padding:6px;text-align:center;cursor:pointer;background:#120b0e;min-width:0}
+.char .ph{width:100%;aspect-ratio:3/4;border-radius:9px;overflow:hidden;background:#2a1a21;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.char img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.char span{display:block;margin-top:5px;font-size:13px;line-height:1.2}
+.char.sel{border-color:var(--red);box-shadow:0 0 0 2px rgba(232,50,74,.25)}
+.char.soon{cursor:default;border-style:dashed;opacity:.7}
+.char.soon b{font-size:30px;font-weight:400}
+.char.soon em{font-style:normal;font-size:11px;color:var(--gold);margin-top:2px}
+.tone{border:2px solid var(--line);border-radius:12px;padding:11px 13px;margin:10px 0;cursor:pointer;background:#120b0e}
+.tone.sel{border-color:var(--red)}
+.tone b{display:inline}
+.tone .hint{color:var(--mute);font-size:12px;margin-left:6px}
+.tone .sample{display:block;margin-top:5px;font-size:14px;font-style:italic;color:#e5d6d2}
+.opt{border:2px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;cursor:pointer;background:#120b0e}
+.opt.sel{border-color:var(--red)}
+.opt small{color:var(--gold);text-transform:uppercase;letter-spacing:.6px;font-size:11px}
+.opt p{margin:6px 0 0}
+.opt.big p{font-size:18px;line-height:1.45}
+.quality{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q{border:2px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;background:#120b0e;text-align:center}
+.q.sel{border-color:var(--red)}
+.q b{display:block}.q span{color:var(--mute);font-size:13px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text);margin:16px 0 0;cursor:pointer}
+.check input{margin-top:4px;flex:none}
+.warn{background:#2c1a10;border:1px solid #8a5a2b;color:#ffe2c2;padding:12px 14px;border-radius:12px;margin:16px 0 0;font-size:14px}
+.err{background:#3a1018;border:1px solid var(--red);color:#ffd7dc;padding:10px 12px;border-radius:10px;margin:12px 0}
+.mute{color:var(--mute);font-size:13px}
+.top{display:flex;gap:14px;align-items:center;margin-bottom:6px}
+.top img{width:84px;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px;flex:none}
+.chips span{display:inline-block;background:#2a1a21;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0}
+video{width:100%;border-radius:14px;background:#000;max-height:70vh}
+.spin{width:44px;height:44px;border:4px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:s 1s linear infinite;margin:18px auto}
+@keyframes s{to{transform:rotate(360deg)}}
+.center{text-align:center}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <img class="logo-img" src="logo.png" alt="ohohRoast" width="993" height="205">
+    <h1 id="title">Get roasted by Christmas</h1>
+    <p class="sub" id="sub">A personalized video message for someone who can take a joke.</p>
+  </div>
+  <div id="app"></div>
+</div>
+
+<script>
+// ============ SETTINGS: fill these in (see SETUP.md) ============
+const SUPABASE_URL = "https://zaqvzpxfzzgrubqydnhu.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_1Wvo-dG6Cu4aToTRl0-sdA_nFMWcGq_"; // publishable key: safe to be public
+const TERMS_URL = "";    // when you have a terms page, put its address here (the link then appears)
+const PRIVACY_URL = "";  // same for the privacy page
+// ================================================================
+const API = SUPABASE_URL + "/functions/v1/api";
+const $app = document.getElementById("app");
+const EMOJI = { gingerbread:"🍪", snowman:"⛄", mama_bear:"🐻" };
+
+// Short examples that show how each tone sounds (same scenario: someone who is always late)
+const TONE_SAMPLES = {
+ "en":{light:"Late again, my friend? Even the reindeer waited for you this time. Bless your heart.",sarcastic:"Oh, you're on time? Mark the calendar and call the newspapers.",roast:"You're so late, your watch filed a complaint. Time isn't broken; you are.",savage:"Late again? Where the hell were you, you magnificent disaster? Even the sloths are faster than you."},
+ "en-GB":{light:"Late again, my friend? Even the reindeer waited for you this time. Bless your heart.",sarcastic:"Oh, you're on time? Mark the calendar and ring the newspapers.",roast:"You're so late, your watch filed a complaint. Time isn't broken; you are.",savage:"Late again? Where the bloody hell were you, you magnificent disaster? Even the sloths are faster than you."},
+ "pt-PT":{light:"Atrasado outra vez, meu amigo? Desta vez até as renas esperaram por ti. Coitadinho.",sarcastic:"Oh, chegaste a horas? Marquem no calendário, chamem os jornais.",roast:"Chegas tão atrasado que o teu relógio apresentou queixa. O tempo não está avariado, tu é que estás.",savage:"Atrasado outra vez? Onde raio andaste, ó magnífico desastre? Até as preguiças são mais rápidas que tu."},
+ "pt-BR":{light:"Atrasado de novo, meu amigo? Dessa vez até as renas esperaram por você. Que gracinha.",sarcastic:"Ah, você chegou na hora? Marca no calendário, chama a imprensa.",roast:"Você é tão atrasado que seu relógio abriu uma reclamação. O tempo não está quebrado, você é que está.",savage:"Atrasado de novo? Onde diabos você se meteu, seu desastre magnífico? Até o bicho-preguiça é mais rápido que você."},
+ "es-ES":{light:"¿Otra vez tarde, amigo? Esta vez hasta los renos te esperaron. Qué ternura.",sarcastic:"Anda, ¿has llegado a tiempo? Que alguien lo apunte en el calendario y avise a la prensa.",roast:"Llegas tan tarde que tu reloj ha presentado una queja. El tiempo no está roto, lo roto eres tú.",savage:"¿Tarde otra vez? ¿Dónde coño te metías, magnífico desastre? Hasta los perezosos son más rápidos que tú."},
+ "es-419":{light:"¿Otra vez tarde, amigo? Esta vez hasta los renos te esperaron. Qué ternura.",sarcastic:"¿Llegaste a tiempo? Anótenlo en el calendario y llamen a la prensa.",roast:"Llegas tan tarde que tu reloj puso una queja. El tiempo no está roto, el roto eres tú.",savage:"¿Tarde otra vez? ¿Dónde diablos andabas, magnífico desastre? Hasta los perezosos son más rápidos que tú."},
+ "fr":{light:"Encore en retard, mon ami ? Cette fois, même les rennes t'ont attendu. Quel amour.",sarcastic:"Oh, tu es à l'heure ? Notez-le dans le calendrier, appelez les journaux.",roast:"Tu es tellement en retard que ta montre a porté plainte. Ce n'est pas le temps qui est cassé, c'est toi.",savage:"Encore en retard ? Où est-ce que tu foutais, magnifique catastrophe ? Même les paresseux sont plus rapides que toi."},
+ "de":{light:"Schon wieder zu spät, mein Freund? Diesmal haben sogar die Rentiere auf dich gewartet. Du Süßer.",sarcastic:"Oh, du bist pünktlich? Markier es im Kalender und ruf die Zeitung an.",roast:"Du kommst so spät, dass sich deine Uhr beschwert hat. Die Zeit ist nicht kaputt, du bist es.",savage:"Schon wieder zu spät? Wo zum Teufel warst du, du großartige Katastrophe? Sogar Faultiere sind schneller als du."},
+ "it":{light:"Ancora in ritardo, amico mio? Stavolta persino le renne ti hanno aspettato. Che tenero.",sarcastic:"Oh, sei arrivato in orario? Segnalo sul calendario e chiama i giornali.",roast:"Sei così in ritardo che il tuo orologio ha sporto denuncia. Non è il tempo a essere rotto, sei tu.",savage:"Di nuovo in ritardo? Dove cazzo eri finito, magnifico disastro? Persino i bradipi sono più veloci di te."}
+};
+
+let CFG = null;
+const S = { order:null, token:null, id:null, resolution:"480p", pick:0, ack:false, mode:"new", busy:false, pollTimer:null, audio:null,
+  form:{ character:"santa", language:"en", tone:"roast", recipient_name:"", nickname:"", relationship:"friend", facts:["","",""], story:"", sender_name:"" } };
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function eur(c){return "€"+(c/100).toFixed(2);}
+function charById(id){return CFG.characters.find(c=>c.id===id)||{id:id,label:id};}
+function langLabel(id){const l=CFG.languages.find(x=>x.id===id);return l?l.label:id;}
+function toneLabel(id){const t=CFG.tones.find(x=>x.id===id);return t?t.label:id;}
+
+async function api(action, body){
+  const r = await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY},body:JSON.stringify(Object.assign({action},body||{}))});
+  let j={}; try{j=await r.json();}catch(e){}
+  if(!r.ok||j.error) throw new Error(j.error||"Something went wrong. Please try again.");
+  return j;
+}
+function save(){ try{localStorage.setItem("santa_order",JSON.stringify({id:S.id,token:S.token}));}catch(e){} }
+function load(){ try{return JSON.parse(localStorage.getItem("santa_order")||"null");}catch(e){return null;} }
+function clearOrder(){ try{localStorage.removeItem("santa_order");}catch(e){} S.id=S.token=S.order=null; history.replaceState(null,"",location.pathname); }
+function showErr(msg){ const e=document.getElementById("err"); if(e){e.textContent=msg; e.classList.remove("hide");} }
+function stopPoll(){ if(S.pollTimer){clearInterval(S.pollTimer);S.pollTimer=null;} }
+function stopAudio(){ if(S.audio){try{S.audio.pause();}catch(e){} S.audio=null; } }
+function guessLang(){
+  const l=(navigator.language||"en").toLowerCase();
+  if(l==="pt-br") return "pt-BR"; if(l.startsWith("pt")) return "pt-PT";
+  if(l==="es-es"||l==="es") return "es-ES"; if(l.startsWith("es")) return "es-419";
+  if(l==="en-gb") return "en-GB"; if(l.startsWith("fr")) return "fr"; if(l.startsWith("de")) return "de"; if(l.startsWith("it")) return "it";
+  return "en";
+}
+
+// ---------- routing ----------
+async function boot(){
+  const q = new URLSearchParams(location.search);
+  try{
+    if(q.get("v")){ return await viewShared(q.get("v")); }
+    CFG = await api("config");
+    S.form.language = guessLang();
+    if(q.get("o") && q.get("k")){
+      S.id=q.get("o"); S.token=q.get("k"); save();
+      if(q.get("session_id")){
+        try{ await api("confirm-payment",{order_id:S.id,token:S.token,session_id:q.get("session_id")}); }
+        catch(e){ return renderMsg("Payment not confirmed yet",e.message+" If you paid, wait a few seconds and refresh this page."); }
+      }
+      history.replaceState(null,"",location.pathname);
+    } else { const o=load(); if(o){S.id=o.id;S.token=o.token;} }
+    if(S.id){
+      try{ const r=await api("get-order",{order_id:S.id,token:S.token}); S.order=r.order; return route(); }
+      catch(e){ clearOrder(); }
+    }
+    renderHome();
+  }catch(e){ renderMsg("We hit a problem", e.message); }
+}
+
+function route(){
+  stopPoll(); stopAudio();
+  const o=S.order;
+  if(!o.paid){ if(o.form) S.form=Object.assign({},S.form,o.form); clearOrder(); return renderHome(); }
+  if(o.status==="paid") return startGenerate();
+  if(o.status==="scripted") return renderConfirm();
+  if(o.status==="rendering") return renderRendering();
+  if(o.status==="done") return renderDone();
+  if(o.status==="failed") return renderMsg("Your video hit a snag", (o.error||"")+" Your order is safe. Contact us and we will sort it out.");
+  renderHome();
+}
+
+function renderMsg(t,m,extra){ stopPoll(); $app.innerHTML=`<div class="card"><h2>${esc(t)}</h2><p>${esc(m)}</p>${extra||""}<button class="ghost" onclick="location.href=location.pathname">Back to start</button></div>`; }
+
+// ---------- viewing a shared video ----------
+async function viewShared(id){
+  document.getElementById("title").textContent="Someone sent you a roast";
+  document.getElementById("sub").textContent="";
+  try{
+    const r=await api("watch",{order_id:id});
+    $app.innerHTML=`<video controls playsinline autoplay src="${esc(r.video_url)}"></video>
+      <button onclick="location.href=location.pathname">Make your own roast</button>`;
+  }catch(e){ renderMsg("Video not found","This link is not valid."); }
+}
+
+// ---------- step 1: build your roast (new order, or edit after payment) ----------
+function renderHome(){
+  stopAudio();
+  const edit = S.mode==="edit", f=S.form, o=S.order;
+  const price = CFG.price_480 + (S.resolution==="720p"?CFG.upgrade_720:0);
+  const free = CFG.payment_mode!=="stripe";
+  const termsTxt = TERMS_URL ? `<a href="${esc(TERMS_URL)}" target="_blank" rel="noopener">Terms</a>` : "Terms";
+  const privTxt = PRIVACY_URL ? `<a href="${esc(PRIVACY_URL)}" target="_blank" rel="noopener">Privacy Policy</a>` : "Privacy Policy";
+  $app.innerHTML=`
+  <div class="card"><h2>${edit?"Edit your details":"1. Pick your character"}</h2>
+    <div class="chars">${CFG.characters.map(c=>c.soon
+      ?`<div class="char soon"><div class="ph"><b>${EMOJI[c.id]||"✨"}</b><em>Coming soon</em></div><span>${esc(c.label)}</span></div>`
+      :`<div class="char ${f.character===c.id?"sel":""}" data-c="${c.id}"><div class="ph"><img src="thumbs/${c.id}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></div><span>${esc(c.label)}</span></div>`).join("")}</div>
+    <label>Language</label>
+    <select id="lang">${CFG.languages.map(l=>`<option value="${l.id}" ${f.language===l.id?"selected":""}>${esc(l.label)}</option>`).join("")}</select>
+    <button class="ghost small" id="hear"></button>
+  </div>
+  <div class="card"><h2>${edit?"":"2. "}How brutal?</h2>
+    ${CFG.tones.map(t=>`<div class="tone ${f.tone===t.id?"sel":""}" data-t="${t.id}"><b>${esc(t.label)}</b><span class="hint">${esc(t.hint)}</span><span class="sample" data-s="${t.id}"></span></div>`).join("")}
+  </div>
+  <div class="card"><h2>${edit?"":"3. "}Tell us about them</h2>
+    <div class="row"><div><label>Their first name</label><input id="rn" maxlength="30" value="${esc(f.recipient_name)}"></div>
+    <div><label>Nickname (optional)</label><input id="nn" maxlength="30" value="${esc(f.nickname)}"></div></div>
+    <label>What are they to you?</label>
+    <select id="rel">${CFG.relationships.map(r=>`<option value="${r.id}" ${f.relationship===r.id?"selected":""}>${esc(r.label)}</option>`).join("")}</select>
+    <label>Fact 1 (job, hobby, a quirk…)</label><input class="fact" maxlength="80" value="${esc(f.facts[0]||"")}" placeholder="Always late to everything">
+    <label>Fact 2 (optional)</label><input class="fact" maxlength="80" value="${esc(f.facts[1]||"")}">
+    <label>Fact 3 (optional)</label><input class="fact" maxlength="80" value="${esc(f.facts[2]||"")}">
+    <label>A naughty-list story (optional)</label><textarea id="story" maxlength="300">${esc(f.story)}</textarea>
+    <div class="count"><span id="cnt">0</span>/300</div>
+    <label>Who is the message from?</label><input id="sn" maxlength="30" value="${esc(f.sender_name)}">
+  </div>
+  ${edit?`
+  <div class="card">
+    <div id="err" class="err hide"></div>
+    <button id="go">Write new jokes (${o.rerolls_left} left)</button>
+    <button class="ghost" id="back">Back to my jokes</button>
+  </div>`:`
+  <div class="card"><h2>4. Quality</h2>
+    <div class="quality">
+      <div class="q ${S.resolution==="480p"?"sel":""}" data-r="480p"><b>Standard 480p</b><span>${eur(CFG.price_480)}</span></div>
+      <div class="q ${S.resolution==="720p"?"sel":""}" data-r="720p"><b>HD 720p</b><span>${eur(CFG.price_480+CFG.upgrade_720)}</span></div>
+    </div>
+    ${free?`<label>Test code</label><input id="code" autocomplete="off" placeholder="Test access code">`:""}
+    <label class="check"><input type="checkbox" id="adult"><span>I am 18 or older and I agree to the ${termsTxt} and ${privTxt}. The person I'm roasting can take a joke.</span></label>
+    <div id="err" class="err hide"></div>
+    <button id="go">${free?"Start (test mode) · "+eur(price):"Continue to payment · "+eur(price)}</button>
+    <p class="mute">You pay now. Then we write 3 jokes, you pick your favourite, and we make the video.</p>
+  </div>`}`;
+  refreshTones(); refreshHear(); updCount();
+
+  document.querySelectorAll(".char:not(.soon)").forEach(el=>el.onclick=()=>{f.character=el.dataset.c;document.querySelectorAll(".char").forEach(x=>x.classList.toggle("sel",x===el));stopAudio();refreshHear();});
+  document.getElementById("lang").onchange=e=>{f.language=e.target.value;stopAudio();refreshTones();refreshHear();};
+  document.querySelectorAll(".tone").forEach(el=>el.onclick=()=>{f.tone=el.dataset.t;document.querySelectorAll(".tone").forEach(x=>x.classList.toggle("sel",x===el));});
+  document.getElementById("story").oninput=updCount;
+  document.getElementById("hear").onclick=hearVoice;
+  document.querySelectorAll(".q").forEach(el=>el.onclick=()=>{S.resolution=el.dataset.r;document.querySelectorAll(".q").forEach(x=>x.classList.toggle("sel",x===el));const g=document.getElementById("go");const p=CFG.price_480+(S.resolution==="720p"?CFG.upgrade_720:0);g.textContent=(free?"Start (test mode) · ":"Continue to payment · ")+eur(p);});
+  if(edit){
+    document.getElementById("go").onclick=()=>{ const nf=collectForm(); S.form=nf; S.mode="new"; startGenerate(nf); };
+    document.getElementById("back").onclick=()=>{ S.mode="new"; renderConfirm(); };
+  } else {
+    document.getElementById("go").onclick=pay;
+  }
+}
+function updCount(){ const s=document.getElementById("story"),c=document.getElementById("cnt"); if(s&&c) c.textContent=s.value.length; }
+function refreshTones(){
+  const lang=document.getElementById("lang").value, set=TONE_SAMPLES[lang]||TONE_SAMPLES.en;
+  document.querySelectorAll(".sample").forEach(el=>{el.textContent="“"+(set[el.dataset.s]||"")+"”";});
+}
+function refreshHear(){
+  const b=document.getElementById("hear"); if(!b) return;
+  b.disabled=false; b.textContent="▶ Hear "+charById(S.form.character).label+" ("+langLabel(S.form.language)+")";
+}
+async function hearVoice(){
+  const b=document.getElementById("hear"); const f=S.form;
+  if(S.audio){ stopAudio(); refreshHear(); return; }
+  b.disabled=true; b.textContent="Loading voice…";
+  try{
+    const r=await api("voice-sample",{language:f.language,character:f.character});
+    const a=new Audio(r.url); S.audio=a;
+    a.onended=()=>{S.audio=null;refreshHear();};
+    await a.play(); b.disabled=false; b.textContent="■ Stop";
+  }catch(e){ S.audio=null; refreshHear(); b.textContent="Voice sample not available right now"; setTimeout(refreshHear,2500); }
+}
+function collectForm(){
+  const f=S.form;
+  f.language=document.getElementById("lang").value;
+  f.recipient_name=document.getElementById("rn").value; f.nickname=document.getElementById("nn").value;
+  f.relationship=document.getElementById("rel").value;
+  f.facts=[...document.querySelectorAll(".fact")].map(x=>x.value);
+  f.story=document.getElementById("story").value; f.sender_name=document.getElementById("sn").value;
+  return JSON.parse(JSON.stringify(f));
+}
+async function pay(){
+  const btn=document.getElementById("go"); const f=collectForm();
+  if(!f.recipient_name.trim()) return showErr("Please enter their first name.");
+  if(!f.facts.some(x=>x.trim())) return showErr("Please add at least one fact about them.");
+  if(!f.sender_name.trim()) return showErr("Please say who the message is from.");
+  if(!document.getElementById("adult").checked) return showErr("Please confirm that you are 18 or older.");
+  const label=btn.textContent; btn.disabled=true; btn.textContent="One moment…";
+  try{
+    const code=document.getElementById("code");
+    const r=await api("create-order",{resolution:S.resolution,form:f,adult_confirmed:true,test_code:code?code.value:"",return_url:location.origin+location.pathname});
+    S.id=r.order_id;S.token=r.token;save();
+    if(r.checkout_url){ location.href=r.checkout_url; return; }
+    const g=await api("get-order",{order_id:S.id,token:S.token}); S.order=g.order; route();
+  }catch(e){ btn.disabled=false; btn.textContent=label; showErr(e.message); }
+}
+
+// ---------- step 2: writing the 3 jokes (automatic after payment, and after "Edit") ----------
+async function startGenerate(form){
+  if(S.busy) return; S.busy=true;
+  $app.innerHTML=`<div class="card center"><h2>Writing your jokes…</h2><div class="spin"></div><p class="mute">About 20 to 30 seconds.</p></div>`;
+  try{
+    const r=await api("generate-scripts",Object.assign({order_id:S.id,token:S.token},form?{form}:{}));
+    S.order=r.order; S.pick=0; S.ack=false; S.busy=false; route();
+  }catch(e){
+    S.busy=false;
+    const left = S.order ? S.order.rerolls_left : 0;
+    renderMsg("We couldn't write your jokes",e.message,`<button id="retry">Try again</button><button class="ghost" id="editb">Edit details</button>`);
+    document.getElementById("retry").onclick=()=>startGenerate(form);
+    document.getElementById("editb").onclick=()=>{ if(S.order&&S.order.form) S.form=Object.assign({},S.form,S.order.form); S.mode="edit"; renderHome(); };
+  }
+}
+
+// ---------- step 3: confirm (pick text, accept, generate) ----------
+function renderConfirm(){
+  stopAudio();
+  const o=S.order, f=o.form, ch=charById(f.character);
+  if(S.pick>=o.scripts.length) S.pick=0;
+  $app.innerHTML=`
+  <div class="card">
+    <h2>Check your video</h2>
+    <div class="top"><img src="thumbs/${esc(f.character)}.jpg" alt="">
+      <div class="chips"><span>${esc(ch.label)}</span><span>${esc(langLabel(f.language))}</span><span>${esc(toneLabel(f.tone))}</span><span>${o.resolution==="720p"?"HD 720p":"Standard 480p"}</span></div></div>
+    <label>Your joke</label>
+    <div class="opt big sel"><small>Option ${S.pick+1} · selected</small><p>${esc(o.scripts[S.pick].text)}</p></div>
+    ${o.scripts.length>1?`<label>Want a different one? Tap to switch</label>`:""}
+    ${o.scripts.map((s,i)=>i===S.pick?"":`<div class="opt" data-i="${i}"><small>Option ${i+1}</small><p>${esc(s.text)}</p></div>`).join("")}
+    <div class="warn"><b>Personalized product.</b> Your video is made just for you the moment you press Generate. It can't be undone or refunded, except if something fails on our side.</div>
+    <label class="check"><input type="checkbox" id="ack" ${S.ack?"checked":""}><span>I understand and I want to generate this video.</span></label>
+    <div id="err" class="err hide"></div>
+    <button id="make" ${S.ack?"":"disabled"}>Generate my video</button>
+    ${o.rerolls_left>0?`<button class="ghost" id="edit">Edit details (${o.rerolls_left} left)</button>`:`<p class="mute">No more edits available for this order.</p>`}
+  </div>`;
+  document.querySelectorAll(".opt[data-i]").forEach(el=>el.onclick=()=>{S.pick=+el.dataset.i;renderConfirm();});
+  document.getElementById("ack").onchange=e=>{S.ack=e.target.checked;document.getElementById("make").disabled=!S.ack;};
+  document.getElementById("make").onclick=async function(){
+    if(!S.ack) return;
+    this.disabled=true; this.textContent="Starting…";
+    try{ const r=await api("select-script",{order_id:S.id,token:S.token,index:S.pick,accept_no_refund:true}); S.order=r.order; route(); }
+    catch(e){ this.disabled=false; this.textContent="Generate my video"; showErr(e.message); }
+  };
+  const ed=document.getElementById("edit");
+  if(ed) ed.onclick=()=>{ S.form=Object.assign({},S.form,o.form); S.mode="edit"; renderHome(); };
+}
+
+// ---------- step 4: rendering ----------
+function renderRendering(){
+  $app.innerHTML=`<div class="card center"><h2>Filming your video…</h2><div class="spin"></div>
+    <p>This takes about 1 to 3 minutes. You can leave this page open, or come back later on this same device.</p></div>`;
+  stopPoll();
+  const tick=async()=>{
+    try{
+      const r=await api("status",{order_id:S.id,token:S.token}); S.order=r.order;
+      if(r.order.status!=="rendering"){ stopPoll(); route(); }
+    }catch(e){}
+  };
+  S.pollTimer=setInterval(tick,5000); tick();
+}
+
+// ---------- step 5: done ----------
+function renderDone(){
+  const o=S.order, shareUrl=location.origin+location.pathname+"?v="+o.id;
+  $app.innerHTML=`
+  <video controls playsinline src="${esc(o.video_url)}"></video>
+  <div class="card">
+    <button id="share">Share</button>
+    <a href="${esc(o.video_url)}" download="roast.mp4" target="_blank" rel="noopener"><button class="ghost" type="button">Download video</button></a>
+    <button class="ghost" id="copy">Copy link</button>
+    <button class="ghost" id="new">Make another</button>
+  </div>`;
+  document.getElementById("share").onclick=async()=>{
+    const text="I just got roasted by Christmas 🎅 @ohohRoast";
+    try{
+      const blob=await (await fetch(o.video_url)).blob();
+      const file=new File([blob],"roast.mp4",{type:"video/mp4"});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text}); return; }
+    }catch(e){}
+    if(navigator.share){ try{ await navigator.share({text,url:shareUrl}); return; }catch(e){} }
+    window.open("https://wa.me/?text="+encodeURIComponent(text+" "+shareUrl),"_blank");
+  };
+  document.getElementById("copy").onclick=async function(){ try{await navigator.clipboard.writeText(shareUrl);this.textContent="Copied!";}catch(e){prompt("Copy this link",shareUrl);} };
+  document.getElementById("new").onclick=()=>{clearOrder();location.reload();};
+}
+
+boot();
+</script>
+</body>
+</html>
